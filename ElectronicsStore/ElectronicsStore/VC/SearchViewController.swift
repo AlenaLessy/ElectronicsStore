@@ -27,29 +27,28 @@ final class SearchViewController: UIViewController {
         static let grayCaseText = "Чехол Incase Flat для MacBook pro 16 дюймов"
         static let strapText = "Спортивный ремешок Black Unity (для к..."
         static let goldCaseText = "Кожанный чехол для MacBook pro 16 дюймов золотой"
-        
     }
     
     // MARK: - Private Visual Components
     private lazy var requestOptionOneLabel = makeQueryOptionsLabel(text: Constants.requestOptionOneText,
                                                                    yCoordinate: 535)
     private lazy var requestOptionOneImageView = makeQueryOptionsImageView(yCoordinate: 535)
-    private lazy var lineOne = makeLine(yCoordinate: 565)
+    private lazy var lineOne = makeLineView(yCoordinate: 565)
     private lazy var requestOptionTwoLabel = makeQueryOptionsLabel(text: Constants.requestOptionTwoText,
                                                                    yCoordinate: 580)
     private lazy var requestOptionTwoImageView = makeQueryOptionsImageView(yCoordinate: 580)
-    private lazy var lineTwo = makeLine(yCoordinate: 610)
+    private lazy var lineTwo = makeLineView(yCoordinate: 610)
     private lazy var requestOptionThreeLabel = makeQueryOptionsLabel(text: Constants.requestOptionThreeText,
                                                                    yCoordinate: 625)
     private lazy var requestOptionThreeImageView = makeQueryOptionsImageView(yCoordinate: 625)
-    private lazy var lineThree = makeLine(yCoordinate: 655)
+    private lazy var lineThree = makeLineView(yCoordinate: 655)
     private lazy var requestOptionFourLabel = makeQueryOptionsLabel(text: Constants.requestOptionFourText,
                                                                    yCoordinate: 670)
     private lazy var requestOptionFourImageView = makeQueryOptionsImageView(yCoordinate: 670)
-    private lazy var lineFour = makeLine(yCoordinate: 700)
-    private lazy var viewOne = makeView(xCoordinate: 10)
-    private lazy var viewTwo = makeView(xCoordinate: 153)
-    private lazy var viewThree = makeView(xCoordinate: 296)
+    private lazy var lineFour = makeLineView(yCoordinate: 700)
+    private lazy var viewOne = makeProductView(xCoordinate: 10, tag: 0)
+    private lazy var viewTwo = makeProductView(xCoordinate: 153, tag: 1)
+    private lazy var viewThree = makeProductView(xCoordinate: 296, tag: 2)
     private lazy var grayCaseLabel = makeProductLabel(text: Constants.grayCaseText,
                                                       xCoordinate: viewOne.frame.minX + 15)
     private lazy var strapLabel = makeProductLabel(text: Constants.strapText,
@@ -123,48 +122,38 @@ final class SearchViewController: UIViewController {
         return btn
     }()
     
+    // MARK: - Private Properties
+    
+    private let data = [
+        (Constants.grayCaseText, Constants.imageGrayCaseName),
+        (Constants.strapText, Constants.imageStrapName),
+        (Constants.goldCaseText, Constants.imageGoldCaseName)
+        ]
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubview()
-        addRecognaizer()
     }
     
     // MARK: - Private Action
     
     @objc private func recognaizerAction(_ sender: UIGestureRecognizer) {
         let productViewController = ProductViewController()
-        switch sender.view?.tag {
-        case 0:
-            productViewController.productName = Constants.grayCaseText
-            productViewController.productImage = Constants.imageGrayCaseName
-            navigationController?.pushViewController(productViewController, animated: true)
-        case 1:
-            productViewController.productName = Constants.strapText
-            productViewController.productImage = Constants.imageStrapName
-            navigationController?.pushViewController(productViewController, animated: true)
-        case 2:
-            productViewController.productName = Constants.goldCaseText
-            productViewController.productImage = Constants.imageGoldCaseName
-            navigationController?.pushViewController(productViewController, animated: true)
-        default:
-            break
-        }
+        guard let currentIndex = sender.view?.tag,
+              currentIndex < data.count
+        else { return }
+        productViewController.productName = data[currentIndex].0
+        productViewController.productImage = data[currentIndex].1
+        navigationController?.pushViewController(productViewController, animated: true)
     }
     
     // MARK: - Private Methods
     
-    private func addRecognaizer() {
-        viewOne.tag = 0
-        viewOne.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(recognaizerAction)))
-        viewOne.isUserInteractionEnabled = true
-        viewTwo.tag = 1
-        viewTwo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(recognaizerAction)))
-        viewTwo.isUserInteractionEnabled = true
-        viewThree.tag = 2
-        viewThree.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(recognaizerAction)))
-        viewThree.isUserInteractionEnabled = true
+   private func addRecognaizer(view: UIView) {
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(recognaizerAction)))
+    view.isUserInteractionEnabled = true
     }
     
     private func addSubview() {
@@ -213,18 +202,20 @@ final class SearchViewController: UIViewController {
         return label
     }
     
-    private func makeLine(yCoordinate: CGFloat) -> UIView {
+    private func makeLineView(yCoordinate: CGFloat) -> UIView {
         let line = UIView()
         line.backgroundColor = .systemGray6
         line.frame = CGRect(x: 15, y: yCoordinate, width: view.frame.width - 30, height: 1)
         return line
     }
     
-    private func makeView(xCoordinate: CGFloat) -> UIView {
+    private func makeProductView(xCoordinate: CGFloat, tag: Int) -> UIView {
         let view = UIView()
+        view.tag = tag
         view.frame = CGRect(x: xCoordinate, y: 270, width: 135, height: 180)
         view.layer.cornerRadius = 15
         view.backgroundColor = .systemGray6
+       addRecognaizer(view: view)
         return view
     }
     

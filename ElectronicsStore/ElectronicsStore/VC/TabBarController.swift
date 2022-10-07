@@ -26,7 +26,7 @@ final class TabBarController: UITabBarController {
     private lazy var buyViewController: BuyViewController = {
         let viewController = BuyViewController()
         viewController.tabBarItem = UITabBarItem(title: Constants.buyTabBarTitle,
-                                                 image: UIImage(named: Constants.buyTabBarImageName), tag: 0)
+                                                 image: UIImage(systemName: Constants.buyTabBarImageName), tag: 0)
         return viewController
     }()
     
