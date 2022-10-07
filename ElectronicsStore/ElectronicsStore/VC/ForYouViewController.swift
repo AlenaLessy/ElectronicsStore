@@ -7,14 +7,10 @@
 
 import UIKit
 /// Экран для вас
-class ForYouViewController: UIViewController {
+final class ForYouViewController: UIViewController {
     
       // MARK: - Constants
-    private enum Constants {
-          static let tabBarImageName = "person.circle"
-        static let tabBarTitle = "Для вас"
-      }
-      
+    
       // MARK: - Private IBoutlet
       
       // MARK: - Private Visual Components
@@ -28,7 +24,6 @@ class ForYouViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarItemConfigure()
        
     }
     // MARK: - Public Methods
@@ -36,11 +31,5 @@ class ForYouViewController: UIViewController {
     // MARK: - Private Action
     
     // MARK: - Private Methods
-    private func tabBarItemConfigure() {
-        let tabBarItem = UITabBarItem()
-        tabBarItem.image = UIImage(systemName: Constants.tabBarImageName)
-        tabBarItem.title = Constants.tabBarTitle
-        self.tabBarItem = tabBarItem
-        
-    }
+ 
 }

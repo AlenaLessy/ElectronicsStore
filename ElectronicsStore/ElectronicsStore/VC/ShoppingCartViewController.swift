@@ -7,13 +7,9 @@
 
 import UIKit
 /// Корзина покупок
-class ShoppingCartViewController: UIViewController {
+final class ShoppingCartViewController: UIViewController {
     
       // MARK: - Constants
-    private enum Constants {
-          static let tabBarImageName = "bag"
-        static let tabBarTitle = "Корзина"
-      }
       
       // MARK: - Private IBoutlet
       
@@ -28,17 +24,10 @@ class ShoppingCartViewController: UIViewController {
       // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarItemConfigure()
     }
     // MARK: - Public Methods
     
     // MARK: - Private Action
     
     // MARK: - Private Methods
-  private func tabBarItemConfigure() {
-      let tabBarItem = UITabBarItem()
-      tabBarItem.image = UIImage(systemName: Constants.tabBarImageName)
-      tabBarItem.title = Constants.tabBarTitle
-      self.tabBarItem = tabBarItem
-  }
 }

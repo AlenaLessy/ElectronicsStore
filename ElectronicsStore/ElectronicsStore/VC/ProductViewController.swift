@@ -8,8 +8,8 @@
 import UIKit
 /// Экран продукта
 final class ProductViewController: UIViewController {
- // MARK: - Publick Properties
-var productImage = ""
+    // MARK: - Publick Properties
+    var productImage = ""
     var productName = ""
     
     // MARK: - Private Visual Components
@@ -47,5 +47,5 @@ var productImage = ""
         view.addSubview(productImageView)
         view.addSubview(productLabel)
     }
-
+    
 }

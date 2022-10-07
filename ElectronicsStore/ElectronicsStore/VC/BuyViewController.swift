@@ -7,13 +7,9 @@
 
 import UIKit
 /// Экран покупки
-class BuyViewController: UIViewController {
-  
+final class BuyViewController: UIViewController {
+    
     // MARK: - Constants
-    private enum Constants {
-          static let tabBarImageName = "laptopcomputer.and.iphone"
-        static let tabBarTitle = "Купить"
-      }
     
     // MARK: - Private IBoutlet
     
@@ -27,20 +23,12 @@ class BuyViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-        super.viewDidLoad()
-        tabBarItemConfigure()
-       
+        super.viewDidLoad()       
     }
     // MARK: - Public Methods
     
     // MARK: - Private Action
     
     // MARK: - Private Methods
-    private func tabBarItemConfigure() {
-        let tabBarItem = UITabBarItem()
-        tabBarItem.image = UIImage(systemName: Constants.tabBarImageName)
-        tabBarItem.title = Constants.tabBarTitle
-        self.tabBarItem = tabBarItem
-        
-    }
+    
 }

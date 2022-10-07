@@ -15,22 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        let buyViewController = BuyViewController()
-        let forYouViewController = ForYouViewController()
-        let searchViewController = SearchViewController()
-        let shoppingCartViewController = ShoppingCartViewController()
-        let buyNavigationController = UINavigationController(rootViewController: buyViewController)
-        let forYouNavigationController = UINavigationController(rootViewController: forYouViewController)
-        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
-        let shoppingCartNavigationController = UINavigationController(rootViewController: shoppingCartViewController)
-        let shopTabBarController = UITabBarController()
-        shopTabBarController.viewControllers = [
-            buyNavigationController,
-            forYouNavigationController,
-            searchNavigationController,
-            shoppingCartNavigationController
-        ]
-        window.rootViewController = shopTabBarController
+        window.rootViewController = TabBarController()
         window.makeKeyAndVisible()
         window.backgroundColor = .black
         self.window = window

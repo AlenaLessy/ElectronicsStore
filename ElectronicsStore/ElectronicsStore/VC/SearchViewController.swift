@@ -7,12 +7,12 @@
 
 import UIKit
 /// Экран поиска
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
     // MARK: - Constants
     private enum Constants {
-        static let tabBarImageName = "magnifyingglass"
-        static let tabBarTitle = "Поиск"
+        static let searchImageName = "magnifyingglass"
+        static let searchLabelText = "Поиск"
         static let placeholderText = " Поиск по продуктам и магазинам"
         static let recentlyWatchedText = "Недавно просмотренные"
         static let clearButtonText = "Очистить"
@@ -91,7 +91,7 @@ class SearchViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         label.frame = CGRect(x: 10, y: 100, width: 100, height: 40)
-        label.text = Constants.tabBarTitle
+        label.text = Constants.searchLabelText
         label.textColor = .white
         return label
     }()
@@ -123,19 +123,13 @@ class SearchViewController: UIViewController {
         return btn
     }()
     
-    // MARK: - Public Properties
-    
-    // MARK: - Private Properties
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        tabBarItemConfigure()
         addSubview()
         addRecognaizer()
     }
-    // MARK: - Public Methods
     
     // MARK: - Private Action
     
@@ -173,13 +167,6 @@ class SearchViewController: UIViewController {
         viewThree.isUserInteractionEnabled = true
     }
     
-    private func tabBarItemConfigure() {
-        let tabBarItem = UITabBarItem()
-        tabBarItem.image = UIImage(systemName: Constants.tabBarImageName)
-        tabBarItem.title = Constants.tabBarTitle
-        self.tabBarItem = tabBarItem
-    }
-    
     private func addSubview() {
         view.addSubview(searchLabel)
         view.addSubview(recentlyWatchedLabel)
@@ -211,7 +198,7 @@ class SearchViewController: UIViewController {
     
     private func makeQueryOptionsImageView(yCoordinate: CGFloat) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: Constants.tabBarImageName)
+        imageView.image = UIImage(systemName: Constants.searchImageName)
         imageView.tintColor = .systemGray
         imageView.frame = CGRect(x: 5, y: yCoordinate, width: 15, height: 15)
         return imageView
