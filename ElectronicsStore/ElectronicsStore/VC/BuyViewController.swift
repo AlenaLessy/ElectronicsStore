@@ -6,9 +6,9 @@
 //
 
 import UIKit
-///
-class ViewController: UIViewController {
-  
+/// Экран покупки
+final class BuyViewController: UIViewController {
+    
     // MARK: - Constants
     
     // MARK: - Private IBoutlet
@@ -23,11 +23,12 @@ class ViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()       
     }
     // MARK: - Public Methods
     
     // MARK: - Private Action
     
     // MARK: - Private Methods
+    
 }
