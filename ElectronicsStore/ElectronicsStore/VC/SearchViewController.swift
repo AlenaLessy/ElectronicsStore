@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Экран поиска
 final class SearchViewController: UIViewController {
     

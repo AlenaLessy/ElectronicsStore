@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 /// Модель продукта
 struct ProductInfo {
     var productName: String = ""

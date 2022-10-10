@@ -6,29 +6,12 @@
 //
 
 import UIKit
+
 /// Экран покупки
 final class BuyViewController: UIViewController {
-    
-    // MARK: - Constants
-    
-    // MARK: - Private IBoutlet
-    
-    // MARK: - Private Visual Components
-    
-    // MARK: - Public Properties
-    
-    // MARK: - Private Properties
-    
-    // MARK: - Initializers
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()       
     }
-    // MARK: - Public Methods
-    
-    // MARK: - Private Action
-    
-    // MARK: - Private Methods
-    
 }
