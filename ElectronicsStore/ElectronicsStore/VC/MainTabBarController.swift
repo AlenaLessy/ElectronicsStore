@@ -7,7 +7,7 @@
 
 import UIKit
 // Экран таббара
-final class TabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     
     // MARK: - Constants
     
@@ -66,5 +66,6 @@ final class TabBarController: UITabBarController {
                            searchNavigationController,
                            shoppingCartNavigationController]
         tabBar.barTintColor = .black
+        tabBar.backgroundColor = .systemGray6
     }
 }
