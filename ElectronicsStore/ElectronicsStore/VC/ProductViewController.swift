@@ -9,41 +9,52 @@ import UIKit
 /// Экран продукта
 final class ProductViewController: UIViewController {
     
-    enum Constant {
-             static let systemImageCheckmark = "checkmark.circle.fill"
-             static let systemImageHeart = "heart"
-             static let systemImageSquare = "square.and.arrow.up"
-             static let systemImageShippingBox = "shippingbox"
-             static let compatibilityLabelText = "Compatible with MacBook Pro - Evgeny"
+    private enum Constant {
+        static let systemImageHeart = "heart"
+        static let systemImageCheckmark = "checkmark.circle.fill"
+        static let systemImageSquare = "square.and.arrow.up"
+        static let systemImageShippingBox = "shippingbox"
         static let todayOrderText = "Заказ сегодня, в течение дня доставка:"
         static let dateOrderText = "Чт 25 Фев - Бесплатно"
         static let locationOrderText = "Варианты доставки для местоположения: 115533"
-         }
+        static let compatibleText = "Совместимо с"
+        static let macBookText = "MacBook Pro - Евгений"
+    }
     
     // MARK: - Publick Properties
     var productInfo = ProductInfo()
-    var productImage = ""
-    var productName = ""
     
     // MARK: - Private Visual Components
     
     private lazy var todayOrderLabel = makeLabel(xCoordinate: 40,
-                                            yCoordinate: 695,
-                                            text: Constant.todayOrderText,
-                                            textColor: .white,
-                                            font: UIFont.systemFont(ofSize: 12, weight: .bold))
+                                                 yCoordinate: 695,
+                                                 text: Constant.todayOrderText,
+                                                 textColor: .white,
+                                                 font: UIFont.systemFont(ofSize: 12, weight: .bold))
+    
+    private lazy var compatibleLabel = makeLabel(xCoordinate: 85,
+                                                 yCoordinate: 575,
+                                                 text: Constant.compatibleText,
+                                                 textColor: .gray,
+                                                 font: UIFont.systemFont(ofSize: 12))
+    
+    private lazy var macBookLabel = makeLabel(xCoordinate: 175,
+                                              yCoordinate: 575,
+                                              text: Constant.macBookText,
+                                              textColor: .systemBlue,
+                                              font: UIFont.systemFont(ofSize: 12))
     
     private lazy var dateOrderLabel = makeLabel(xCoordinate: 40,
-                                            yCoordinate: 712,
-                                            text: Constant.dateOrderText,
-                                            textColor: .gray,
-                                            font: UIFont.systemFont(ofSize: 12))
+                                                yCoordinate: 712,
+                                                text: Constant.dateOrderText,
+                                                textColor: .gray,
+                                                font: UIFont.systemFont(ofSize: 12))
     
     private lazy var locationOrderLabel = makeLabel(xCoordinate: 40,
-                                            yCoordinate: 727,
-                                            text: Constant.locationOrderText,
-                                            textColor: .systemBlue,
-                                            font: UIFont.systemFont(ofSize: 12))
+                                                    yCoordinate: 727,
+                                                    text: Constant.locationOrderText,
+                                                    textColor: .systemBlue,
+                                                    font: UIFont.systemFont(ofSize: 12))
     
     private lazy var whiteColorButton = makeButton(color: .lightGray, xCoordinate: 150)
     private lazy var grayColorButton = makeButton(color: .systemGray4, xCoordinate: 205)
@@ -55,6 +66,14 @@ final class ProductViewController: UIViewController {
         image.frame = CGRect(x: 80, y: 10, width: 250, height: 170)
         guard let imageName = productInfo.productImageNames.first else { return image }
         image.image = UIImage(named: imageName)
+        return image
+    }()
+    
+    private lazy var compatibleImageView: UIImageView = {
+        let image = UIImageView()
+        image.frame = CGRect(x: 60, y: 580, width: 20, height: 20)
+        image.image = UIImage(systemName: Constant.systemImageCheckmark)
+        image.tintColor = .green
         return image
     }()
     
@@ -155,10 +174,10 @@ final class ProductViewController: UIViewController {
     }()
     
     private lazy var barButtonItems = {
-             let heartBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageHeart))
-             let squreBarButtonItem2 = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageSquare))
-             return [heartBarButtonItem, squreBarButtonItem2]
-         }()
+        let heartBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageHeart))
+        let squreBarButtonItem2 = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageSquare))
+        return [heartBarButtonItem, squreBarButtonItem2]
+    }()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -187,7 +206,7 @@ final class ProductViewController: UIViewController {
     private func setupBarButtonItems() {
         navigationItem.rightBarButtonItems = barButtonItems
         navigationController?.navigationBar.backgroundColor = .systemGray6
-         }
+    }
     
     private func addSubview() {
         view.addSubview(productLabel)
@@ -208,15 +227,18 @@ final class ProductViewController: UIViewController {
         view.addSubview(dateOrderLabel)
         view.addSubview(locationOrderLabel)
         view.addSubview(addProduct)
+        view.addSubview(compatibleImageView)
+        view.addSubview(compatibleLabel)
+        view.addSubview(macBookLabel)
     }
     
-  private func makeButton(color: UIColor, xCoordinate: CGFloat) -> UIButton {
+    private func makeButton(color: UIColor, xCoordinate: CGFloat) -> UIButton {
         let btn = UIButton()
-      btn.frame = CGRect(x: xCoordinate, y: 505, width: 38, height: 38)
-      btn.layer.cornerRadius = 19
-      btn.backgroundColor = color
-      btn.layer.borderWidth = 3
-      btn.layer.borderColor = UIColor.black.cgColor
+        btn.frame = CGRect(x: xCoordinate, y: 505, width: 38, height: 38)
+        btn.layer.cornerRadius = 19
+        btn.backgroundColor = color
+        btn.layer.borderWidth = 3
+        btn.layer.borderColor = UIColor.black.cgColor
         return btn
     }
     
