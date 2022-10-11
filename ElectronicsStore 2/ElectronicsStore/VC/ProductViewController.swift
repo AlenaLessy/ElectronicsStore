@@ -6,9 +6,7 @@
 //
 
 import UIKit
-
 /// Экран продукта
-
 final class ProductViewController: UIViewController {
     
     private enum Constant {
@@ -147,7 +145,7 @@ final class ProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var addProductButton: UIButton = {
+    private lazy var addProduct: UIButton = {
         let btn = UIButton()
         btn.frame = CGRect(x: 10, y: 630, width: view.frame.width - 10, height: 40)
         btn.backgroundColor = #colorLiteral(red: 0.05358404666, green: 0.5216525197, blue: 1, alpha: 1)
@@ -167,7 +165,7 @@ final class ProductViewController: UIViewController {
         return scroll
     }()
     
-    private lazy var backgroundForIndicatorView: UIView = {
+    private lazy var backgroundForIndicator: UIView = {
         let view = UIView()
         view.alpha = 0
         view.frame = .init(x: 0, y: 425, width: UIScreen.main.bounds.width, height: 1.5)
@@ -215,7 +213,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(priceLabel)
         view.addSubview(productScrollView)
         view.addSubview(productGrayLabel)
-        view.addSubview(backgroundForIndicatorView)
+        view.addSubview(backgroundForIndicator)
         productScrollView.addSubview(productImageView)
         productScrollView.addSubview(productTwoImageView)
         productScrollView.addSubview(productThreeImageView)
@@ -228,7 +226,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(todayOrderLabel)
         view.addSubview(dateOrderLabel)
         view.addSubview(locationOrderLabel)
-        view.addSubview(addProductButton)
+        view.addSubview(addProduct)
         view.addSubview(compatibleImageView)
         view.addSubview(compatibleLabel)
         view.addSubview(macBookLabel)
@@ -278,13 +276,13 @@ extension ProductViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // метод UIView для которого нужна анимация определенной длительности
         UIView.animate(withDuration: 0.32) {
-            self.backgroundForIndicatorView.alpha = 1
+            self.backgroundForIndicator.alpha = 1
         }
         
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         UIView.animate(withDuration: 0.33) {
-            self.backgroundForIndicatorView.alpha = 0
+            self.backgroundForIndicator.alpha = 0
         }
     }
     

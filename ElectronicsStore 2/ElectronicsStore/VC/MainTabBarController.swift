@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 // Экран таббара
 final class MainTabBarController: UITabBarController {
     
