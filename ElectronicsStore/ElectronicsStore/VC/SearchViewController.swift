@@ -17,10 +17,7 @@ final class SearchViewController: UIViewController {
         static let placeholderText = " Поиск по продуктам и магазинам"
         static let recentlyWatchedText = "Недавно просмотренные"
         static let clearButtonText = "Очистить"
-        static let requestOptionOneText = "AirPods"
-        static let requestOptionTwoText = "ApleCare"
-        static let requestOptionThreeText = "Beats"
-        static let requestOptionFourText = "Сравните модели IPhone"
+        static let requestOptionText = ["AirPods", "ApleCare", "Beats", "Сравните модели IPhone"]
         static let queryOptionsText = "Варианты запросов"
         static let imageGrayCaseNames = ["Image", "case2", "case3"]
         static let imageStrapNames = ["4", "3", "clock2"]
@@ -32,56 +29,7 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Private Visual Components
-    private lazy var requestOptionOneLabel = makeQueryOptionsLabel(text: Constants.requestOptionOneText,
-                                                                   yCoordinate: 535)
-    private lazy var requestOptionOneImageView = makeQueryOptionsImageView(yCoordinate: 535)
-    private lazy var lineOne = makeLineView(yCoordinate: 565)
-    private lazy var requestOptionTwoLabel = makeQueryOptionsLabel(text: Constants.requestOptionTwoText,
-                                                                   yCoordinate: 580)
-    private lazy var requestOptionTwoImageView = makeQueryOptionsImageView(yCoordinate: 580)
-    private lazy var lineTwo = makeLineView(yCoordinate: 610)
-    private lazy var requestOptionThreeLabel = makeQueryOptionsLabel(text: Constants.requestOptionThreeText,
-                                                                     yCoordinate: 625)
-    private lazy var requestOptionThreeImageView = makeQueryOptionsImageView(yCoordinate: 625)
-    private lazy var lineThree = makeLineView(yCoordinate: 655)
-    private lazy var requestOptionFourLabel = makeQueryOptionsLabel(text: Constants.requestOptionFourText,
-                                                                    yCoordinate: 670)
-    private lazy var requestOptionFourImageView = makeQueryOptionsImageView(yCoordinate: 670)
-    private lazy var lineFour = makeLineView(yCoordinate: 700)
-    private lazy var viewOne = makeProductView(xCoordinate: 10, tag: 0)
-    private lazy var viewTwo = makeProductView(xCoordinate: 153, tag: 1)
-    private lazy var viewThree = makeProductView(xCoordinate: 296, tag: 2)
-    private lazy var grayCaseLabel = makeProductLabel(text: Constants.grayCaseText,
-                                                      xCoordinate: 15)
-    private lazy var strapLabel = makeProductLabel(text: Constants.strapText,
-                                                   xCoordinate: 15)
-    private lazy var goldCaseLabel = makeProductLabel(text: Constants.goldCaseText,
-                                                      xCoordinate: 15)
-    
-    private lazy var caseImageView: UIImageView = {
-        let image = UIImageView()
-        image.frame = CGRect(x: 15, y: 20, width: 105, height: 70)
-        guard Constants.imageGrayCaseNames.count > 0 else { return image }
-        image.image = UIImage(named: Constants.imageGrayCaseNames[0])
-        return image
-    }()
-    
-    private lazy var strapImageView: UIImageView = {
-        let image = UIImageView()
-        image.frame = CGRect(x: 30, y: 20, width: 70, height: 80)
-        guard Constants.imageGrayCaseNames.count > 0 else { return image }
-        image.image = UIImage(named: Constants.imageStrapNames[0])
-        return image
-    }()
-
-    private lazy var caseGoldImageView: UIImageView = {
-        let image = UIImageView()
-        image.frame = CGRect(x: 15, y: 0, width: 105, height: 110)
-        guard Constants.imageGrayCaseNames.count > 0 else { return image }
-        image.image = UIImage(named: Constants.imageGoldCaseNames[0])
-        return image
-    }()
-    
+  
     private lazy var queryOptionsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21, weight: .bold)
@@ -130,7 +78,7 @@ final class SearchViewController: UIViewController {
     private lazy var productScrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.frame = .init(x: 0, y: 270, width: UIScreen.main.bounds.width, height: 180)
-        scroll.contentSize = CGSize(width: viewThree.frame.maxX - viewOne.frame.minX, height: viewOne.frame.height)
+        scroll.contentSize = CGSize(width: 421, height: 180)
         return scroll
     }()
     
@@ -153,6 +101,9 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubview()
+        addProduct()
+        addLine()
+        addRequest()
     }
     
     // MARK: - Private Action
@@ -168,6 +119,41 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private Methods
     
+    private func addRequest() {
+   var yCoordinate: CGFloat = 535
+        for value in Constants.requestOptionText {
+            let label = makeQueryOptionsLabel(text: value, yCoordinate: yCoordinate)
+            let imageView = makeQueryOptionsImageView(yCoordinate: yCoordinate)
+            yCoordinate += 45
+            view.addSubview(label)
+            view.addSubview(imageView)
+        }
+    }
+    
+   private func addProduct() {
+        var xCoordinateBavkgroundView: CGFloat = 10
+        for (index, value) in productInfo.enumerated() {
+            let backgroundView = makeProductView(xCoordinate: xCoordinateBavkgroundView, tag: index)
+            xCoordinateBavkgroundView += 143
+            view.addSubview(backgroundView)
+            guard let imageName = value.productImageNames.first else { return }
+            let imageView = makeImageView(xCoordinate: 20, name: imageName)
+            backgroundView.addSubview(imageView)
+            let productLabel = makeProductLabel(text: value.productName, xCoordinate: 15)
+            backgroundView.addSubview(productLabel)
+            productScrollView.addSubview(backgroundView)
+        }
+    }
+    
+    private func addLine() {
+        var yCoordinate: CGFloat = 565
+        for _ in 0...3 {
+            let line = makeLineView(yCoordinate: yCoordinate)
+            yCoordinate += 45
+            view.addSubview(line)
+        }
+    }
+    
     private func addRecognaizer(view: UIView) {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(recognaizerAction))
         tapGesture.numberOfTapsRequired = 2
@@ -176,34 +162,12 @@ final class SearchViewController: UIViewController {
     }
     
     private func addSubview() {
-        let labels = [searchLabel, recentlyWatchedLabel, requestOptionOneLabel,
-                      requestOptionTwoLabel, requestOptionThreeLabel, requestOptionFourLabel, queryOptionsLabel]
+        let labels = [searchLabel, recentlyWatchedLabel, queryOptionsLabel]
         labels.forEach { view.addSubview($0) }
         
         view.addSubview(clearButton)
         view.addSubview(productsSearchBar)
-        view.addSubview(requestOptionOneImageView)
-        view.addSubview(requestOptionTwoImageView)
-        view.addSubview(requestOptionThreeImageView)
-        view.addSubview(requestOptionFourImageView)
-        view.addSubview(lineOne)
-        view.addSubview(lineTwo)
-        view.addSubview(lineThree)
-        view.addSubview(lineFour)
-        
-        view.addSubview(viewOne)
-        view.addSubview(viewTwo)
-        view.addSubview(viewThree)
         view.addSubview(productScrollView)
-        productScrollView.addSubview(viewOne)
-        productScrollView.addSubview(viewTwo)
-        productScrollView.addSubview(viewThree)
-        viewOne.addSubview(caseImageView)
-        viewTwo.addSubview(strapImageView)
-        viewThree.addSubview(caseGoldImageView)
-        viewOne.addSubview(grayCaseLabel)
-        viewTwo.addSubview(strapLabel)
-        viewThree.addSubview(goldCaseLabel)
     }
     
     private func makeQueryOptionsImageView(yCoordinate: CGFloat) -> UIImageView {
@@ -242,7 +206,7 @@ final class SearchViewController: UIViewController {
     
     private func makeImageView(xCoordinate: CGFloat, name: String) -> UIImageView {
         let image = UIImageView()
-        image.frame = CGRect(x: xCoordinate, y: 300, width: 105, height: 90)
+        image.frame = CGRect(x: xCoordinate, y: 20, width: 105, height: 90)
         image.image = UIImage(named: name)
         return image
     }
