@@ -19,13 +19,15 @@ final class SearchViewController: UIViewController {
         static let clearButtonText = "Очистить"
         static let requestOptionText = ["AirPods", "ApleCare", "Beats", "Сравните модели IPhone"]
         static let queryOptionsText = "Варианты запросов"
-        static let imageGrayCaseNames = ["Image", "case2", "case3"]
-        static let imageStrapNames = ["4", "3", "clock2"]
-        static let imageGoldCaseNames = ["2", "caseBrown2", "caseBrown3"]
-        static let grayCaseText = "Чехол Incase Flat для MacBook Pro 16 дюймов"
-        static let strapText = "Спортивный ремешок Black Unity (для к..."
-        static let goldCaseText = "Кожанный чехол для MacBook Pro 16 дюймов золотой"
-        static let productPrice =  "3 990.00 руб."
+        static let imageClassicStrapNames = ["1", "2", "3"]
+        static let classicStrapText = "Ремешок Native Union Classic Strap для Apple Watch 42/44/45мм, силикон, черный"
+        static let imagePouchEnvelopeNames = ["4", "5", "6"]
+        static let pouchEnvelopeCaseText = "Чехол-конверт DBramante1928 MODE Paris для MacBook Pro 16, кожа, бежевый"
+        static let imageMagicMouseNames = ["7", "8", "9"]
+        static let magicMouseText = "Мышь Apple Magic Mouse, черный"
+        static let imageHeadphonesNames = ["10", "11", "12"]
+        static let headphonesText = "Беспроводные наушники Sudio E2, серый"
+        static let productPrice =  ["8 390.00 руб.", "4 990.00 руб.", "14 990.00 руб.", "8 990.00 руб."]
     }
     
     // MARK: - Private Visual Components
@@ -78,22 +80,25 @@ final class SearchViewController: UIViewController {
     private lazy var productScrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.frame = .init(x: 0, y: 270, width: UIScreen.main.bounds.width, height: 180)
-        scroll.contentSize = CGSize(width: 421, height: 180)
+        scroll.contentSize = CGSize(width: 600, height: 180)
         return scroll
     }()
     
     // MARK: - Private Properties
     
     private var productInfo = [
-        ProductInfo(productName: Constants.grayCaseText,
-                    productImageNames: Constants.imageGrayCaseNames,
-                    productPrice: Constants.productPrice),
-        ProductInfo(productName: Constants.strapText,
-                    productImageNames: Constants.imageStrapNames,
-                    productPrice: Constants.productPrice),
-        ProductInfo(productName: Constants.goldCaseText,
-                    productImageNames: Constants.imageGoldCaseNames,
-                    productPrice: Constants.productPrice)
+        ProductInfo(productName: Constants.classicStrapText,
+                    productImageNames: Constants.imageClassicStrapNames,
+                    productPrice: Constants.productPrice[0]),
+        ProductInfo(productName: Constants.pouchEnvelopeCaseText,
+                    productImageNames: Constants.imagePouchEnvelopeNames,
+                    productPrice: Constants.productPrice[1]),
+        ProductInfo(productName: Constants.magicMouseText,
+                    productImageNames: Constants.imageMagicMouseNames,
+                    productPrice: Constants.productPrice[2]),
+        ProductInfo(productName: Constants.headphonesText,
+                    productImageNames: Constants.imageHeadphonesNames,
+                    productPrice: Constants.productPrice[3])
     ]
         
     // MARK: - LifeCycle
