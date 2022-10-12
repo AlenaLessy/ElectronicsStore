@@ -12,4 +12,5 @@ struct ProductInfo {
     var productName: String = ""
     var productImageNames: [String] = []
     var productPrice: String = ""
+    var pageAdress: String = ""
 }

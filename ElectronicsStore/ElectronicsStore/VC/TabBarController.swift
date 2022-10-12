@@ -45,7 +45,7 @@ final class MainTabBarController: UITabBarController {
         return viewController
     }()
     
-    private lazy var shoppingCartNavigationController: ShoppingCartViewController = {
+    private lazy var shoppingCartController: ShoppingCartViewController = {
         let viewController = ShoppingCartViewController()
         viewController.tabBarItem = UITabBarItem(title: Constants.productTabBarTitle,
                                                  image: UIImage(systemName: Constants.productTabBarImageName), tag: 3)
@@ -53,6 +53,8 @@ final class MainTabBarController: UITabBarController {
     }()
     
     private lazy var searchNavigationController = UINavigationController(rootViewController: searchViewController)
+    
+    private lazy var forYouNavigationController = UINavigationController(rootViewController: forYouViewController)
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -63,10 +65,11 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Private methods
     private func setupControllers() {
-        viewControllers = [buyViewController, forYouViewController,
+        viewControllers = [buyViewController, forYouNavigationController,
                            searchNavigationController,
-                           shoppingCartNavigationController]
-        tabBar.barTintColor = .black
+                           shoppingCartController]
+        tabBar.barTintColor = .systemBackground
         tabBar.backgroundColor = .systemGray6
+       // tabBar.unselectedItemTintColor = .systemGray3
     }
 }
