@@ -35,7 +35,7 @@ final class ForYouViewController: UIViewController {
     
     // MARK: - Private Visual Components
     
-    private lazy var whatNewLabel: UILabel = {
+    private var whatNewLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 10, y: 180, width: 300, height: 30)
         label.text = Constants.whatsNewText
@@ -44,7 +44,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var recommendedLabel: UILabel = {
+    private var recommendedLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 10, y: 480, width: 300, height: 30)
         label.text = Constants.recommendedText
@@ -53,7 +53,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var yourDevicesLabel: UILabel = {
+    private var yourDevicesLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 10, y: 710, width: 300, height: 30)
         label.text = Constants.yourDevicesText
@@ -62,7 +62,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var showAllLabel: UILabel = {
+    private var showAllLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 275, y: 712.5, width: 100, height: 30)
         label.text = Constants.showAllText
@@ -71,7 +71,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var orderHasBeenSentLabel: UILabel = {
+    private var orderHasBeenSentLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 110, y: 250, width: 200, height: 30)
         label.text = Constants.orderHasBeenSentText
@@ -80,7 +80,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var quantityGoodsLabel: UILabel = {
+    private var quantityGoodsLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 110, y: 272, width: 200, height: 30)
         label.text = Constants.quantityGoodsText
@@ -101,7 +101,7 @@ final class ForYouViewController: UIViewController {
         return backgroundView
     }()
     
-    private lazy var orderImageView: UIImageView = {
+    private var orderImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 20, y: 210, width: 70, height: 130)
         image.image = UIImage(named: Constants.orderImageName)
@@ -124,7 +124,7 @@ final class ForYouViewController: UIViewController {
         return progressView
     }()
     
-    private lazy var deliveryNewsImageView: UIImageView = {
+    private var deliveryNewsImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 20, y: 550, width: 40, height: 40)
         image.image = UIImage(systemName: Constants.appBadgeSystemImageName)
@@ -132,7 +132,7 @@ final class ForYouViewController: UIViewController {
         return image
     }()
     
-    private lazy var orderNewsLabel: UILabel = {
+    private var orderNewsLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 80, y: 530, width: 230, height: 100)
         label.numberOfLines = 3
@@ -142,7 +142,7 @@ final class ForYouViewController: UIViewController {
         return label
     }()
     
-    private lazy var turnOnNotificationsLabel: UILabel = {
+    private var turnOnNotificationsLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 80, y: 580, width: 290, height: 100)
         label.numberOfLines = 3
@@ -178,19 +178,12 @@ final class ForYouViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        overrideUserInterfaceStyle = .light
-        navigationController?.overrideUserInterfaceStyle = .light
-        view.backgroundColor = .systemBackground
-        tabBarController?.tabBar.backgroundColor = Constants.backGroundColor
-        tabBarController?.tabBar.unselectedItemTintColor = .darkGray
+        switchLightTheme()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        overrideUserInterfaceStyle = .dark
-        navigationController?.overrideUserInterfaceStyle = .dark
-        tabBarController?.tabBar.backgroundColor = .systemGray6
-        tabBarController?.tabBar.unselectedItemTintColor = .lightGray
+        switchDarkTheme()
     }
     
     // MARK: - Private Action
@@ -274,6 +267,21 @@ final class ForYouViewController: UIViewController {
         view.addSubview(deliveryNewsImageView)
         view.addSubview(orderNewsLabel)
         view.addSubview(turnOnNotificationsLabel)
+    }
+    
+    private func switchLightTheme() {
+        overrideUserInterfaceStyle = .light
+        navigationController?.overrideUserInterfaceStyle = .light
+        view.backgroundColor = .systemBackground
+        tabBarController?.tabBar.backgroundColor = Constants.backGroundColor
+        tabBarController?.tabBar.unselectedItemTintColor = .darkGray
+    }
+    
+    private func switchDarkTheme() {
+        overrideUserInterfaceStyle = .dark
+        navigationController?.overrideUserInterfaceStyle = .dark
+        tabBarController?.tabBar.backgroundColor = .systemGray6
+        tabBarController?.tabBar.unselectedItemTintColor = .lightGray
     }
 }
 

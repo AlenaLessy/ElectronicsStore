@@ -32,7 +32,7 @@ final class StartPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
-        view.backgroundColor = .black
+  
     }
     
     // MARK: - Private Action
@@ -44,6 +44,7 @@ final class StartPageViewController: UIViewController {
     // MARK: - Private Method
     
     private func addSubview() {
+        view.backgroundColor = .black
         view.addSubview(entryButton)
     }
 }

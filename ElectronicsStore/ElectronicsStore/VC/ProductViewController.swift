@@ -72,7 +72,7 @@ final class ProductViewController: UIViewController {
         return image
     }()
     
-    private lazy var compatibleImageView: UIImageView = {
+    private var compatibleImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 60, y: 580, width: 20, height: 20)
         image.image = UIImage(systemName: Constant.systemImageCheckmark)
@@ -80,7 +80,7 @@ final class ProductViewController: UIViewController {
         return image
     }()
     
-    private lazy var boxImageView: UIImageView = {
+    private var boxImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 10, y: 700, width: 20, height: 20)
         image.image = UIImage(systemName: Constant.systemImageShippingBox)
@@ -178,7 +178,7 @@ final class ProductViewController: UIViewController {
         return scroll
     }()
     
-    private lazy var backgroundForIndicatorView: UIView = {
+    private var backgroundForIndicatorView: UIView = {
         let view = UIView()
         view.alpha = 0
         view.frame = .init(x: 0, y: 425, width: UIScreen.main.bounds.width, height: 1.5)
@@ -186,7 +186,7 @@ final class ProductViewController: UIViewController {
         return view
     }()
     
-    private lazy var barButtonItems = {
+    private var barButtonItems = {
         let heartBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageHeart))
         let squreBarButtonItem2 = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageSquare))
         return [heartBarButtonItem, squreBarButtonItem2]

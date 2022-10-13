@@ -18,7 +18,7 @@ final class ProductSiteViewController: UIViewController {
         return webView
     }()
     
-    private lazy var progressView: UIProgressView = {
+    private var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         return progressView

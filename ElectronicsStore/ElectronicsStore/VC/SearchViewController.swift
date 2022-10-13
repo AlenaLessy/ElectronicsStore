@@ -36,7 +36,7 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private Visual Components
   
-    private lazy var queryOptionsLabel: UILabel = {
+    private var queryOptionsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21, weight: .bold)
         label.frame = CGRect(x: 10, y: 480, width: 300, height: 40)
@@ -45,7 +45,7 @@ final class SearchViewController: UIViewController {
         return label
     }()
     
-    private lazy var searchLabel: UILabel = {
+    private var searchLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         label.frame = CGRect(x: 10, y: 100, width: 100, height: 40)

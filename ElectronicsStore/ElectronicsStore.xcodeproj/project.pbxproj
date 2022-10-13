@@ -14,6 +14,7 @@
 		57159E8828F632680046E298 /* extension + lineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57159E8728F632680046E298 /* extension + lineView.swift */; };
 		57159E8D28F636490046E298 /* AsseptCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57159E8C28F636490046E298 /* AsseptCatalog.xcassets */; };
 		579B963B28F6733700DCA805 /* startPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B963A28F6733700DCA805 /* startPageViewController.swift */; };
+		579B963D28F80FD100DCA805 /* extension+changeSizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B963C28F80FD100DCA805 /* extension+changeSizeImage.swift */; };
 		57EC7B4428EECCC0009FDB75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4328EECCC0009FDB75 /* AppDelegate.swift */; };
 		57EC7B4628EECCC0009FDB75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4528EECCC0009FDB75 /* SceneDelegate.swift */; };
 		57EC7B4828EECCC0009FDB75 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4728EECCC0009FDB75 /* BuyViewController.swift */; };
@@ -35,6 +36,7 @@
 		57159E8728F632680046E298 /* extension + lineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + lineView.swift"; sourceTree = "<group>"; };
 		57159E8C28F636490046E298 /* AsseptCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AsseptCatalog.xcassets; sourceTree = "<group>"; };
 		579B963A28F6733700DCA805 /* startPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startPageViewController.swift; sourceTree = "<group>"; };
+		579B963C28F80FD100DCA805 /* extension+changeSizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+changeSizeImage.swift"; sourceTree = "<group>"; };
 		57EC7B4028EECCC0009FDB75 /* ElectronicsStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectronicsStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EC7B4328EECCC0009FDB75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EC7B4528EECCC0009FDB75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				57159E8728F632680046E298 /* extension + lineView.swift */,
+				579B963C28F80FD100DCA805 /* extension+changeSizeImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				57EC7B4828EECCC0009FDB75 /* BuyViewController.swift in Sources */,
 				57EC7B6428F01D54009FDB75 /* TabBarController.swift in Sources */,
+				579B963D28F80FD100DCA805 /* extension+changeSizeImage.swift in Sources */,
 				57EC7B4428EECCC0009FDB75 /* AppDelegate.swift in Sources */,
 				57159E8628F61B680046E298 /* DetailsViewController.swift in Sources */,
 				57159E7F28F4572C0046E298 /* ProductInfo.swift in Sources */,
