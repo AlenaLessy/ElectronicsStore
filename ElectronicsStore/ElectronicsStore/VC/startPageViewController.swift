@@ -10,6 +10,7 @@ import UIKit
 /// StartPageViewController для онбординга пользователей
 final class StartPageViewController: UIPageViewController {
     
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
