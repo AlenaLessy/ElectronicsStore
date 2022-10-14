@@ -28,11 +28,15 @@ final class SearchViewController: UIViewController {
         static let imageHeadphonesNames = ["10", "11", "12"]
         static let headphonesText = "Беспроводные наушники Sudio E2, серый"
         static let productPrice =  ["8 390.00 руб.", "4 990.00 руб.", "14 990.00 руб.", "8 990.00 руб."]
+        static let classicStrapPageAdress = "https://re-store.ru/catalog/CSTRAP-AW-L-BLK/"
+        static let pouchEnvelopeCasePageAdress = "https://re-store.ru/catalog/PA15SASA5450/"
+        static let magicMousePageAdress = "https://re-store.ru/catalog/MMMQ3/"
+        static let headphonesPageAdress = "https://re-store.ru/catalog/E2GRY/"
     }
     
     // MARK: - Private Visual Components
   
-    private lazy var queryOptionsLabel: UILabel = {
+    private var queryOptionsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21, weight: .bold)
         label.frame = CGRect(x: 10, y: 480, width: 300, height: 40)
@@ -41,7 +45,7 @@ final class SearchViewController: UIViewController {
         return label
     }()
     
-    private lazy var searchLabel: UILabel = {
+    private var searchLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         label.frame = CGRect(x: 10, y: 100, width: 100, height: 40)
@@ -89,16 +93,16 @@ final class SearchViewController: UIViewController {
     private var productInfo = [
         ProductInfo(productName: Constants.classicStrapText,
                     productImageNames: Constants.imageClassicStrapNames,
-                    productPrice: Constants.productPrice[0]),
+                    productPrice: Constants.productPrice[0], pageAdress: Constants.classicStrapPageAdress),
         ProductInfo(productName: Constants.pouchEnvelopeCaseText,
                     productImageNames: Constants.imagePouchEnvelopeNames,
-                    productPrice: Constants.productPrice[1]),
+                    productPrice: Constants.productPrice[1], pageAdress: Constants.pouchEnvelopeCasePageAdress),
         ProductInfo(productName: Constants.magicMouseText,
                     productImageNames: Constants.imageMagicMouseNames,
-                    productPrice: Constants.productPrice[2]),
+                    productPrice: Constants.productPrice[2], pageAdress: Constants.magicMousePageAdress),
         ProductInfo(productName: Constants.headphonesText,
                     productImageNames: Constants.imageHeadphonesNames,
-                    productPrice: Constants.productPrice[3])
+                    productPrice: Constants.productPrice[3], pageAdress: Constants.headphonesPageAdress)
     ]
         
     // MARK: - LifeCycle
@@ -153,7 +157,7 @@ final class SearchViewController: UIViewController {
     private func addLine() {
         var yCoordinate: CGFloat = 565
         for _ in 0...3 {
-            let line = makeLineView(yCoordinate: yCoordinate)
+            let line = makeLineView(yCoordinate: yCoordinate, color: .systemGray6)
             yCoordinate += 45
             view.addSubview(line)
         }
@@ -191,14 +195,7 @@ final class SearchViewController: UIViewController {
         label.frame = CGRect(x: 30, y: yCoordinate - 7, width: 250, height: 30)
         return label
     }
-    
-    private func makeLineView(yCoordinate: CGFloat) -> UIView {
-        let line = UIView()
-        line.backgroundColor = .systemGray6
-        line.frame = CGRect(x: 15, y: yCoordinate, width: view.frame.width - 30, height: 1)
-        return line
-    }
-    
+ 
     private func makeProductView(xCoordinate: CGFloat, tag: Int) -> UIView {
         let view = UIView()
         view.tag = tag
@@ -211,7 +208,7 @@ final class SearchViewController: UIViewController {
     
     private func makeImageView(xCoordinate: CGFloat, name: String) -> UIImageView {
         let image = UIImageView()
-        image.frame = CGRect(x: xCoordinate, y: 20, width: 105, height: 90)
+        image.frame = CGRect(x: xCoordinate, y: 20, width: 90, height: 90)
         image.image = UIImage(named: name)
         return image
     }

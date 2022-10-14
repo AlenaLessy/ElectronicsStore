@@ -65,13 +65,14 @@ final class ProductViewController: UIViewController {
     
     private lazy var productImageView: UIImageView = {
         let image = UIImageView()
-        image.frame = CGRect(x: 80, y: 10, width: 250, height: 170)
+        image.frame = CGRect(x: 80, y: 10, width: 210, height: 210)
         guard let imageName = productInfo.productImageNames.first else { return image }
         image.image = UIImage(named: imageName)
+        addRecognaizer(imageView: image)
         return image
     }()
     
-    private lazy var compatibleImageView: UIImageView = {
+    private var compatibleImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 60, y: 580, width: 20, height: 20)
         image.image = UIImage(systemName: Constant.systemImageCheckmark)
@@ -79,7 +80,7 @@ final class ProductViewController: UIViewController {
         return image
     }()
     
-    private lazy var boxImageView: UIImageView = {
+    private var boxImageView: UIImageView = {
         let image = UIImageView()
         image.frame = CGRect(x: 10, y: 700, width: 20, height: 20)
         image.image = UIImage(systemName: Constant.systemImageShippingBox)
@@ -89,7 +90,7 @@ final class ProductViewController: UIViewController {
     
     private lazy var productTwoImageView: UIImageView = {
         let image = UIImageView()
-        image.frame = CGRect(x: 480, y: 10, width: 250, height: 170)
+        image.frame = CGRect(x: 480, y: 10, width: 210, height: 210)
         guard productInfo.productImageNames.count > 2 else { return image }
         image.image = UIImage(named: productInfo.productImageNames[1])
         return image
@@ -97,7 +98,7 @@ final class ProductViewController: UIViewController {
     
     private lazy var productThreeImageView: UIImageView = {
         let image = UIImageView()
-        image.frame = CGRect(x: 880, y: 10, width: 250, height: 170)
+        image.frame = CGRect(x: 880, y: 10, width: 210, height: 210)
         guard let imageName = productInfo.productImageNames.last else { return image }
         image.image = UIImage(named: imageName)
         return image
@@ -147,6 +148,16 @@ final class ProductViewController: UIViewController {
         return label
     }()
     
+    private lazy var openDetailsButton: UIButton = {
+        let btn = UIButton()
+        btn.frame = CGRect(x: macBookLabel.frame.minX,
+                           y: macBookLabel.frame.minY,
+                           width: macBookLabel.frame.width,
+                           height: macBookLabel.frame.height)
+        btn.addTarget(self, action: #selector(openDetailsButtonAction), for: .touchUpInside)
+        return btn
+    }()
+    
     private lazy var addProductButton: UIButton = {
         let btn = UIButton()
         btn.frame = CGRect(x: 10, y: 630, width: view.frame.width - 10, height: 40)
@@ -167,7 +178,7 @@ final class ProductViewController: UIViewController {
         return scroll
     }()
     
-    private lazy var backgroundForIndicatorView: UIView = {
+    private var backgroundForIndicatorView: UIView = {
         let view = UIView()
         view.alpha = 0
         view.frame = .init(x: 0, y: 425, width: UIScreen.main.bounds.width, height: 1.5)
@@ -175,7 +186,7 @@ final class ProductViewController: UIViewController {
         return view
     }()
     
-    private lazy var barButtonItems = {
+    private var barButtonItems = {
         let heartBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageHeart))
         let squreBarButtonItem2 = UIBarButtonItem(image: UIImage(systemName: Constant.systemImageSquare))
         return [heartBarButtonItem, squreBarButtonItem2]
@@ -188,7 +199,6 @@ final class ProductViewController: UIViewController {
         addSubview()
         configureButton()
         setupBarButtonItems()
-        
     }
     
     // MARK: - Private Action
@@ -203,7 +213,27 @@ final class ProductViewController: UIViewController {
         grayColorButtonView.isHidden = false
     }
     
+    @objc private func recognaizerAction(_ sender: UIGestureRecognizer) {
+        let productSiteViewController = ProductSiteViewController()
+        productSiteViewController.productInfo = productInfo
+        present(productSiteViewController, animated: true)
+    }
+    
+    @objc private func openDetailsButtonAction() {
+        let detailsVC = DetailsViewController()
+        guard let urlDPF = Bundle.main.url(forResource: "UIKitDZ", withExtension: "pdf") else { return }
+                detailsVC.details = urlDPF
+                present(detailsVC, animated: true)
+    }
+    
     // MARK: - Private Methods
+    
+    private func addRecognaizer(imageView: UIImageView) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(recognaizerAction))
+        tapGesture.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tapGesture)
+        view.isUserInteractionEnabled = true
+    }
     
     private func setupBarButtonItems() {
         navigationItem.rightBarButtonItems = barButtonItems
@@ -232,6 +262,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(compatibleImageView)
         view.addSubview(compatibleLabel)
         view.addSubview(macBookLabel)
+        view.addSubview(openDetailsButton)
     }
     
     private func makeButton(color: UIColor, xCoordinate: CGFloat) -> UIButton {
