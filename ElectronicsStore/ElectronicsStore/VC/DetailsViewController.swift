@@ -24,8 +24,7 @@ final class DetailsViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(detailsWebView)
+        configureView()
         goToSite()
     }
     
@@ -34,5 +33,10 @@ final class DetailsViewController: UIViewController {
         guard let detailsURL = details else { return }
         let request = URLRequest(url: detailsURL)
         self.detailsWebView.load(request)
+    }
+    
+    private func configureView() {
+        view.backgroundColor = .systemBackground
+        view.addSubview(detailsWebView)
     }
 }
