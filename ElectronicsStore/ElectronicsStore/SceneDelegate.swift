@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = scene as? UIWindowScene else { return }
                 window?.windowScene = scene
                 let userDefaults = UserDefaults.standard
-                guard userDefaults.object(forKey: "didShow") != nil else {
+                guard userDefaults.object(forKey: "NewKey") != nil else {
                     window?.rootViewController = StartPageViewController()
                     window?.makeKeyAndVisible()
                     return
