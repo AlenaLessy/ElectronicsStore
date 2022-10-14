@@ -28,7 +28,7 @@ final class StartPageViewController: UIPageViewController {
         static let userDefaultsValue = "Value"
     }
     
-    // Private Visual Components
+    // MARK: - Private Visual Components
     private lazy var entryButton: UIButton = {
         let btn = UIButton()
         btn.setTitleColor(.systemBlue, for: .normal)
