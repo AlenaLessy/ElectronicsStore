@@ -20,26 +20,30 @@ final class OnboardingViewController: UIViewController {
     // MARK: - Private Visual Components
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 0, y: view.frame.minY + 400, width: view.bounds.width, height: 40)
+        label.frame = CGRect(x: 0, y: view.frame.midY + 150, width: view.bounds.width, height: 40)
+        label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: Constants.arialHebrewBoldNameFont, size: 16)
+        label.alpha = 0
         return label
     }()
     
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 0, y: titleLabel.frame.maxY + 5, width: view.bounds.width, height: 60)
+        label.frame = CGRect(x: 0, y: view.frame.midY + 200, width: view.bounds.width, height: 60)
         label.textAlignment = .center
         label.textColor = .lightGray
         label.numberOfLines = 2
         label.font = UIFont(name: Constants.arialNameFont, size: 16)
+        label.alpha = 0
         return label
     }()
     
-    private var onboardingImageView: UIImageView = {
+    private lazy var onboardingImageView: UIImageView = {
         let onboardingImage = UIImageView()
         onboardingImage.contentMode = .scaleAspectFit
-        onboardingImage.translatesAutoresizingMaskIntoConstraints = false
+        onboardingImage.frame = CGRect(origin: .zero, size: CGSize(width: view.bounds.width,
+                                                                   height: view.bounds.height / 3 * 2))
         return onboardingImage
     }()
     
@@ -47,40 +51,44 @@ final class OnboardingViewController: UIViewController {
     
     init(title: String, info: String, imageName: String) {
         super.init(nibName: nil, bundle: nil)
-        titleLabel.text = title
-        infoLabel.text = info
-        onboardingImageView.image = UIImage(named: imageName)
+        addSubview()
+        self.titleLabel.text = title
+        self.infoLabel.text = info
+        self.onboardingImageView.image = UIImage(named: imageName)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addSubview()
-        onboardingImageConstrains()
+   // MARK: - LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appearanceLabel()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        hiddenLabel()
     }
     
     // MARK: - Private Methods
     private func addSubview() {
         view.backgroundColor = .systemBackground
-        view.addSubview(titleLabel)
-        view.addSubview(infoLabel)
         view.addSubview(onboardingImageView)
+        view.addSubview(infoLabel)
+        view.addSubview(titleLabel)
     }
     
-    // MARK: - Constraints
+   func hiddenLabel() {
+        self.infoLabel.alpha = 0
+        self.titleLabel.alpha = 0
+    }
     
-    private func onboardingImageConstrains() {
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: onboardingImageView, attribute: .top, relatedBy: .equal,
-                               toItem: view, attribute: .top, multiplier: 1, constant: 100),
-            NSLayoutConstraint(item: onboardingImageView, attribute: .width, relatedBy: .equal,
-                               toItem: view, attribute: .width, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: onboardingImageView, attribute: .height, relatedBy: .equal,
-                               toItem: view, attribute: .width, multiplier: 1, constant: 0)
-        ])
+   func appearanceLabel() {
+        UILabel.animate(withDuration: 3) {
+            self.infoLabel.alpha = 1
+            self.titleLabel.alpha = 1
+        }
     }
 }
