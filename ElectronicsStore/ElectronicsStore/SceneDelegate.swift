@@ -15,6 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else { return }
                 window?.windowScene = scene
+                let userDefaults = UserDefaults.standard
+                guard userDefaults.object(forKey: "NewKey") != nil else {
+                    window?.rootViewController = StartPageViewController()
+                    window?.makeKeyAndVisible()
+                    return
+                }
                 window?.rootViewController = MainTabBarController()
                 window?.makeKeyAndVisible()
     }
