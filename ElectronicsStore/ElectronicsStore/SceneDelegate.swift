@@ -9,6 +9,10 @@ import UIKit
 ///
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    private enum Constants {
+        static let key = "NewKey"
+    }
+    
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
@@ -16,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = scene as? UIWindowScene else { return }
                 window?.windowScene = scene
                 let userDefaults = UserDefaults.standard
-                guard userDefaults.object(forKey: "NewKey") != nil else {
+        guard userDefaults.object(forKey: Constants.key) != nil else {
                     window?.rootViewController = StartPageViewController()
                     window?.makeKeyAndVisible()
                     return
