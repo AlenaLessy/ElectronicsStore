@@ -78,8 +78,7 @@ final class StartPageViewController: UIPageViewController {
     }()
     
     // MARK: - Public Properties
-    
-    // через инит
+
     var pages: [UIViewController] = [
         OnboardingViewController(title: Constants.pageOneTitle,
                                  info: Constants.pageOneInfo,
@@ -91,22 +90,9 @@ final class StartPageViewController: UIPageViewController {
                                  info: Constants.pageThreeInfo,
                                  imageName: Constants.pageThreeImageName)
     ]
-    
-//    // через наблюдатель
-//    var pages: [UIViewController] = [
-//    OnboardingViewController(),
-//    OnboardingViewController(), OnboardingViewController
-//    ]
-    
+   
     var currentPage = 0
-//    var onboarning: [Onboarding] = [
-//        Onboarding(title: Constants.pageOneTitle, info: Constants.pageOneInfo, imageName: Constants.pageOneImageName),
-//        Onboarding(title: Constants.pageTwoTitle, info: Constants.pageTwoInfo, imageName: Constants.pageTwoImageName),
-//        Onboarding(title: Constants.pageThreeTitle,
-//                   info: Constants.pageThreeInfo,
-//                   imageName: Constants.pageThreeImageName)
-//    ]
-    
+
     // MARK: - Initialization
     override init(transitionStyle style: UIPageViewController.TransitionStyle,
                   navigationOrientation: UIPageViewController.NavigationOrientation,

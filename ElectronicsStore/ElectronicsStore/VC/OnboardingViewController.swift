@@ -47,39 +47,19 @@ final class OnboardingViewController: UIViewController {
         return onboardingImage
     }()
     
-    // MARK: - Private Properties
-    
-//    var onboarding: Onboarding? {
-//        didSet {
-//            guard let onboarding else { return }
-//            titleLabel.text = onboarding.title
-//            infoLabel.text = onboarding.info
-//            onboardingImageView.image = UIImage(named: onboarding.imageName)
-//        }
-//    }
-    
     // MARK: - Initialization
-    
-    // через инит
+
     init(title: String, info: String, imageName: String) {
         super.init(nibName: nil, bundle: nil)
         addSubview()
-        self.titleLabel.text = title
-        self.infoLabel.text = info
-        self.onboardingImageView.image = UIImage(named: imageName)
+        configureOnboarding(title: title, info: info, imageName: imageName)
     }
-    
-//    // через наблюдатель
-//    init() {
-//        super.init(nibName: nil, bundle: nil)
-//        addSubview()
-//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-   // MARK: - LifeCycle
+    // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appearanceLabel()
@@ -91,6 +71,13 @@ final class OnboardingViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    
+    private func configureOnboarding(title: String, info: String, imageName: String) {
+        self.titleLabel.text = title
+        self.infoLabel.text = info
+        self.onboardingImageView.image = UIImage(named: imageName)
+    }
+    
     private func addSubview() {
         view.backgroundColor = .systemBackground
         view.addSubview(onboardingImageView)
@@ -98,12 +85,12 @@ final class OnboardingViewController: UIViewController {
         view.addSubview(titleLabel)
     }
     
-   func hiddenLabel() {
+    func hiddenLabel() {
         self.infoLabel.alpha = 0
         self.titleLabel.alpha = 0
     }
     
-   func appearanceLabel() {
+    func appearanceLabel() {
         UILabel.animate(withDuration: 3) {
             self.infoLabel.alpha = 1
             self.titleLabel.alpha = 1
