@@ -15,6 +15,8 @@
 		57159E8D28F636490046E298 /* AsseptCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57159E8C28F636490046E298 /* AsseptCatalog.xcassets */; };
 		579B963B28F6733700DCA805 /* startPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B963A28F6733700DCA805 /* startPageViewController.swift */; };
 		579B963D28F80FD100DCA805 /* extension+changeSizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B963C28F80FD100DCA805 /* extension+changeSizeImage.swift */; };
+		579B963F28F9274800DCA805 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B963E28F9274800DCA805 /* OnboardingViewController.swift */; };
+		579C20A928F9A5F300C865A0 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579C20A828F9A5F300C865A0 /* Onboarding.swift */; };
 		57EC7B4428EECCC0009FDB75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4328EECCC0009FDB75 /* AppDelegate.swift */; };
 		57EC7B4628EECCC0009FDB75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4528EECCC0009FDB75 /* SceneDelegate.swift */; };
 		57EC7B4828EECCC0009FDB75 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC7B4728EECCC0009FDB75 /* BuyViewController.swift */; };
@@ -37,6 +39,8 @@
 		57159E8C28F636490046E298 /* AsseptCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AsseptCatalog.xcassets; sourceTree = "<group>"; };
 		579B963A28F6733700DCA805 /* startPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startPageViewController.swift; sourceTree = "<group>"; };
 		579B963C28F80FD100DCA805 /* extension+changeSizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+changeSizeImage.swift"; sourceTree = "<group>"; };
+		579B963E28F9274800DCA805 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		579C20A828F9A5F300C865A0 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		57EC7B4028EECCC0009FDB75 /* ElectronicsStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectronicsStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EC7B4328EECCC0009FDB75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EC7B4528EECCC0009FDB75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				57159E7E28F4572C0046E298 /* ProductInfo.swift */,
+				579C20A828F9A5F300C865A0 /* Onboarding.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				579B963A28F6733700DCA805 /* startPageViewController.swift */,
+				579B963E28F9274800DCA805 /* OnboardingViewController.swift */,
 				57EC7B6328F01D54009FDB75 /* TabBarController.swift */,
 				57EC7B4728EECCC0009FDB75 /* BuyViewController.swift */,
 				57EC7B5828EED74A009FDB75 /* ForYouViewController.swift */,
@@ -233,12 +239,14 @@
 				57159E8628F61B680046E298 /* DetailsViewController.swift in Sources */,
 				57159E7F28F4572C0046E298 /* ProductInfo.swift in Sources */,
 				57EC7B5D28EED781009FDB75 /* ShoppingCartViewController.swift in Sources */,
+				579B963F28F9274800DCA805 /* OnboardingViewController.swift in Sources */,
 				57EC7B6028EF6EA7009FDB75 /* ProductViewController.swift in Sources */,
 				579B963B28F6733700DCA805 /* startPageViewController.swift in Sources */,
 				57EC7B4628EECCC0009FDB75 /* SceneDelegate.swift in Sources */,
 				57159E8828F632680046E298 /* extension + lineView.swift in Sources */,
 				57159E8228F5A2020046E298 /* ProductSiteViewController.swift in Sources */,
 				57EC7B5928EED74A009FDB75 /* ForYouViewController.swift in Sources */,
+				579C20A928F9A5F300C865A0 /* Onboarding.swift in Sources */,
 				57EC7B5B28EED76F009FDB75 /* SearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

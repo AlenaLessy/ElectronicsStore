@@ -9,16 +9,24 @@ import UIKit
 ///
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    private enum Constants {
+        static let key = "NewKey"
+    }
+    
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        guard let scene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: scene)
-        window.rootViewController = MainTabBarController()
-        window.makeKeyAndVisible()
-        window.backgroundColor = .black
-        self.window = window
+        guard let scene = scene as? UIWindowScene else { return }
+                window?.windowScene = scene
+                let userDefaults = UserDefaults.standard
+        guard userDefaults.object(forKey: Constants.key) != nil else {
+                    window?.rootViewController = StartPageViewController()
+                    window?.makeKeyAndVisible()
+                    return
+                }
+                window?.rootViewController = MainTabBarController()
+                window?.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
